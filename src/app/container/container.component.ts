@@ -1,4 +1,4 @@
-import { Component, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, ComponentRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { DynamicComponent } from '../dynamic/dynamic.component';
 @Component({
   selector: 'app-container',
@@ -7,10 +7,9 @@ import { DynamicComponent } from '../dynamic/dynamic.component';
 })
 export class ContainerComponent {
   @ViewChild('dynamicComponentContainer', { read: ViewContainerRef }) container!: ViewContainerRef;
+  componentRef!: ComponentRef<DynamicComponent>;
   createDynamicComponent() {
-    const componentRef = this.container.createComponent(DynamicComponent);
-    componentRef.instance.message = 'Hello, Dynamic Component!';
+    this.componentRef = this.container.createComponent(DynamicComponent);
+    this.componentRef.instance.message = 'Hello, Dynamic Component!';
   }
-
-
 }
