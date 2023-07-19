@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-dynamic',
@@ -7,4 +7,10 @@ import { Component, Input } from '@angular/core';
 })
 export class DynamicComponent {
   @Input() message: string = '';
+  @Output() closeEvent = new EventEmitter<void>();
+
+  close() {
+    this.closeEvent.emit();
+  }
+
 }
