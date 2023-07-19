@@ -14,9 +14,10 @@ export class ContainerComponent {
   @ViewChild('dynamicComponentContainer', { read: ViewContainerRef })
   container!: ViewContainerRef;
   dynaComponentRefs: ComponentRef<DynamicComponent>[] = [];
+  x = 0;
   createDynamicComponent() {
     const componentRef = this.container.createComponent(DynamicComponent);
-    componentRef.instance.message = 'Hello, Dynamic Component!';
+    componentRef.instance.message = 'Hello, Dynamic Component!' + (this.x++);
     componentRef.instance.closeEvent.subscribe(() =>
       this.closeDynamicComponent(componentRef)
     );
